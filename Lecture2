@@ -5,12 +5,11 @@ m=zeros(30,1);
 
 counter=1;
 counter2=12;
+
 for i=1:30
-    m(i)=mean(sum(vector(counter):vector(counter2)));
+
+    m(i)=mean(vector(counter:counter2));
     counter=counter+12;
     counter2=counter2+12;
-    if counter2==360
-    end
- 
 
 end
