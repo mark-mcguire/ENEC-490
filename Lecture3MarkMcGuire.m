@@ -6,7 +6,7 @@ jan = x(1,2)*randn(1000,1) + x(1,1);
 april = x(4,2)*randn(1000,1)+x(4,1);
 
 figure;
-edges = 28:.5:47;
+edges = -5:.5:30;
 histogram(april,edges);
 hold on;
 histogram(jan,edges);
