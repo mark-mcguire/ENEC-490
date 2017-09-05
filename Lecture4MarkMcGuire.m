@@ -51,9 +51,14 @@ subplot(2,2,2);
 autocorr(bootstrap_sample);
 
 montecarlo=zeros(12*num_years,1);
+
+% I would make use of your 'monthly_stats' function from last time
+s = monthly_stats(d);
+
 for i = 1:num_years
     for j = 1:12
-    s = randn(num_years*rand(1));
-    montecarlo((i-1)*12+j) = d(j,s);
+    
+    montecarlo((i-1)*12+j) = s(j,1) + s(j,2)*randn(1);
+    
     end
 end
