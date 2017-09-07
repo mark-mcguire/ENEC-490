@@ -71,17 +71,18 @@ for i = window/2 + 1:num_hours-window/2
     
     % calculate the std. deviation for every point in transformed data from
     % (i-250) to (i + 250) (a 501 point window)
-    
-    %a generalized way to write this
-    %window_std = std(transformed_data(i-window/2:i+window/2));
     window_std = std(transformed_data(i-250:i+250));
     
     % test whether points 251:8510 in transformed data are outliers
-    if transformed_data(i) >= window_mean + 3*window_std | transformed_data(i) <= window_mean - 3*window_std
+    if transformed_data(i) >= window_mean + 3*window_std || transformed_data(i) <= window_mean - 3*window_std
         outliers(i) = 1;
     else
         outliers(i) = 0;
     end
+    
+end
+
+find(outliers>0)
 
 peak=zeros(365,1);
 for i=1:365
@@ -93,7 +94,4 @@ data2=csvread('tempdata.csv');
 daily_average=data2(:,2);
 
 figure;
-scatter(daily_average,peak);
-
-
-    
+scatter(peak,daily_average)
