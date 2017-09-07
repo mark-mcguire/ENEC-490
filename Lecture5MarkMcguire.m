@@ -67,11 +67,14 @@ for i = window/2 + 1:num_hours-window/2
     
     % calculate the mean for every point in transformed data from (i-250)
     % to (i + 250) (a 501 point window)
-    window_mean = mean(i-250:i+250);
+    window_mean = mean(transformed_data(i-250:i+250));
     
     % calculate the std. deviation for every point in transformed data from
     % (i-250) to (i + 250) (a 501 point window)
-    window_std = std(i-250:i+250);
+    
+    %a generalized way to write this
+    %window_std = std(transformed_data(i-window/2:i+window/2));
+    window_std = std(transformed_data(i-250:i+250));
     
     % test whether points 251:8510 in transformed data are outliers
     if transformed_data(i) >= window_mean + 3*window_std | transformed_data(i) <= window_mean - 3*window_std
