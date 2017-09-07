@@ -93,8 +93,7 @@ data2=csvread('tempdata.csv');
 daily_average=data2(:,2);
 
 figure;
-scatter(1:1:365,peak);
-hold on;
-scatter(1:1:365,daily_average);
+scatter(daily_average,peak);
+
 
     
