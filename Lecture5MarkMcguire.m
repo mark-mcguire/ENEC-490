@@ -82,4 +82,19 @@ for i = window/2 + 1:num_hours-window/2
     else
         outliers(i) = 0;
     end
+
+peak=zeros(365,1);
+for i=1:365
+    peak(i,1)=max(data(24*i-23:24*i));
+    
+end
+      
+data2=csvread('tempdata.csv');
+daily_average=data2(:,1);
+
+figure;
+scatter(1:1:365,peak);
+hold on;
+scatter(1:1:365,daily_average);
+
     
