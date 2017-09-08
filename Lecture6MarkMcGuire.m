@@ -84,12 +84,11 @@ FIVE=p(210:261,2);
 SIX=p(262:313,2);
 SEVEN=p(314:365,2);
 
-% will have to shorten ONE because it's longer
+
 ONE = ONE(1:52);
 
-% put them in a matrix
+
 X = [ONE TWO THREE FOUR FIVE SIX SEVEN];
 
 figure;
-% might have to change labels depending on what day numbers 1-7 correspond to in 2014
 boxplot(X,'Labels',{'WED','THU','FRI','SAT','SUN','MON','TUE'});
