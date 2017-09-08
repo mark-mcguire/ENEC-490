@@ -78,7 +78,11 @@ p=sortrows(a,1);
 
 ONE = p(1:53,2);
 TWO = p(54:105,2);
-% ...
+THREE = p(106:157,2);
+FOUR = p(158:209,2);
+FIVE=p(210:261,2);
+SIX=p(262:313,2);
+SEVEN=p(314:365,2);
 
 % will have to shorten ONE because it's longer
 ONE = ONE(1:52);
