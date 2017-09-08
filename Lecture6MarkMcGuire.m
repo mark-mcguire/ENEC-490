@@ -92,4 +92,4 @@ X = [ONE TWO THREE FOUR FIVE SIX SEVEN];
 
 figure;
 % might have to change labels depending on what day numbers 1-7 correspond to in 2014
-boxplot(X,'Labels',{'SUN','MON','TUE','WED','THU','FRI','SAT'});
+boxplot(X,'Labels',{'WED','THU','FRI','SAT','SUN','MON','TUE'});
