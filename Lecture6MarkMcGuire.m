@@ -66,6 +66,7 @@ legend('January','June');
 hold off;
 
 vec=1:1:7;
+
 x = [repmat(vec(1:7),52,1)];
 year=mat2vec(x);
 onerow=[1];
@@ -75,12 +76,16 @@ a=[weekdays peak];
 
 p=sortrows(a,1);
 
+ONE = p(1:53,2);
+TWO = p(54:105,2);
+% ...
+
+% will have to shorten ONE because it's longer
+ONE = ONE(1:52);
+
+% put them in a matrix
+X = [ONE TWO THREE FOUR FIVE SIX SEVEN];
+
 figure;
-hold on;
-boxplot(p(1:53,2));
-boxplot(p(54:105,2));
-boxplot(p(106:157,2));
-boxplot(p(158:209));
-boxplot(p(210:261,2));
-boxplot(p(262:313,2));
-boxplot(p(314:365,2));
+% might have to change labels depending on what day numbers 1-7 correspond to in 2014
+boxplot(X,'Labels',{'SUN','MON','TUE','WED','THU','FRI','SAT'});
