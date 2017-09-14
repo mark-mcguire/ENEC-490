@@ -1,0 +1,75 @@
+%Lecture8
+
+%import relevant data 
+[data text combined] = xlsread('N3045US3m','Data 1','A4:B183');
+
+%histogram of 2002-2016 gas price data
+histogram(data); 
+
+%log transformation
+transformed_data = log(data);
+
+%histogram of log transformed data
+histogram(transformed_data); 
+xlabel('Log Natural Gas Price ($/MMBtu)','FontSize',14);
+ylabel('Frequency','FontSize',14);
+
+%number of years in dataset
+years = length(data)/12;
+
+%convert to 12 x N matrix
+monthly_matrix = annual_profile(transformed_data);
+
+% mean and standard deviation of log-transformed data by month
+stats = zeros(12,2);
+for i = 1:12
+    stats(i,1) = mean(monthly_matrix(i,:));
+    stats(i,2) = std(monthly_matrix(i,:));
+end
+
+%identify months
+months = {'Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'};
+
+figure; 
+hold on;
+%bin 'edges'
+edges = 0:0.5:30;
+xlabel('Log Natural Gas Price ($/MMBtu)','FontSize',14);
+ylabel('Frequency','FontSize',14);
+
+%highest mean
+idx = find(stats(:,1) == max(stats(:,1)));
+sample = stats(idx,1) + stats(idx,2)*randn(1000,1);
+back_transformed = exp(sample);
+label_1 = strcat(months{idx},' - Highest Mean');
+histogram(back_transformed,edges);
+
+
+minmean= find(stats(:,1)== min(stats(:,1)));
+sample2= stats(minmean,1) + stats(minmean,2)*randn(1000,1);
+back_transformed2=exp(sample2);
+label_2 = strcat(months{minmean},' - Lowest Mean');
+histogram(back_transformed2,edges);
+
+
+maxstd= find(stats(:,2)== max(stats(:,2)));
+sample3= stats(maxstd,1) + stats(maxstd,2)*randn(1000,1);
+back_transformed3=exp(sample3);
+label_3 = strcat(months{maxstd},' - Highest Std');
+histogram(back_transformed3,edges);
+
+minstd=find(stats(:,2)==min(stats(:,2)));
+sample4= stats(minstd,1) + stats(minstd,2)*randn(1000,1);
+back_transformed4=exp(sample4);
+label_4 = strcat(months{minstd},' - Lowest Std');
+histogram(back_transformed4,edges);
+
+legend('Jan - Highest Mean','Sep - Lowest Mean','June - Highest Std','Nov - Lowest Std');
+
+hold off;
+
+figure;
+boxplot(monthly_matrix','Labels',{'Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'});
+
+figure;
+plot(data);
