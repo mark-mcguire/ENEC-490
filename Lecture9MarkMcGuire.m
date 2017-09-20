@@ -37,4 +37,4 @@ g=find(f>0.2);
 NCcp=length(g)/length(state_plants);
 
 %>.2 condtion on having also selected NC
-x=state_prob*cf_prob;
+x=NCcp*state_prob;
