@@ -35,3 +35,6 @@ plant_cond_Nc=length(solarplant)/length(state_plants);
 f=data(state_plants);
 g=find(f>0.2);
 NCcp=length(g)/length(state_plants);
+
+%>.2 condtion on having also selected NC
+x=state_prob*cf_prob;
