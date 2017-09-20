@@ -32,9 +32,16 @@ solarplant=find(e(:,1)>0);
 plant_cond_Nc=length(solarplant)/length(state_plants);
 
 %solar plant in NC cp>.2
-f=data(state_plants);
-g=find(f>0.2);
-NCcp=length(g)/length(state_plants);
+f = combined(fuel_plants,:);
+g = strcmp(state,f(:,1));
+h = f(g,:);
+fuel_state_cf_plants = 0;
+for i = 1:length(h)
+    if h{i,3} > cf
+        fuel_state_cf_plants = fuel_state_cf_plants + 1;
+    end
+end
+NCcp=fuel_state_cf_plants/length(data);
 
 %>.2 condtion on having also selected NC
-x=NCcp*state_prob;
+x = fuel_state_cf_plants/length(solarplant);
